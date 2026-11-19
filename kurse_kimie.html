@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="sq" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurse Kimie | Platformë Profesionale Online & Interaktive Mësimore</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter & Plus Jakarta Sans for maximum legibility -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            900: '#134e4a',
+                            950: '#042f2e',
+                        },
+                        accent: {
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-padding-top: 5rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        img, svg, video {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        a, button, input, select {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-light {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 10% 20%, rgba(13, 148, 136, 0.25) 0%, transparent 45%),
+                        radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.2) 0%, transparent 50%),
+                        linear-gradient(135deg, #020617 0%, #0f172a 100%);
+        }
+        .pulse-glow {
+            box-shadow: 0 0 25px -5px rgba(20, 184, 166, 0.4);
+        }
+        .responsive-dialog-panel {
+            max-height: calc(100vh - 2rem);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        @supports (height: 100dvh) {
+            .responsive-dialog-panel {
+                max-height: calc(100dvh - 2rem);
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+            }
+
+            .topbar-text {
+                font-size: 10px;
+                line-height: 1.4;
+            }
+
+            .mobile-cta-text {
+                white-space: normal;
+                word-break: break-word;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-brand-500 selection:text-slate-950 pt-20 pb-20 sm:pb-0">
+
+    <header class="fixed inset-x-0 top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 shadow-lg shadow-black/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 rounded-2xl overflow-hidden border border-brand-400/40 bg-slate-900 shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                    <img src="./logo.jpeg" alt="Kurse Kimie logo" class="w-full h-full object-cover" />
+                </div>
+                <div>
+                    <span class="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-brand-400 transition-colors">Kurse Kimie</span>
+                    <span class="block text-[11px] uppercase font-bold text-brand-400 tracking-wider">Mësimdhënie  Online & Interaktive</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center space-x-8 font-semibold text-sm text-slate-300">
+                <a href="#kreu" class="hover:text-brand-400 transition-colors">Kreu</a>
+                <a href="#kurset" class="hover:text-brand-400 transition-colors">Programet e Kurseve</a>
+                <a href="#llogaritësi" class="hover:text-brand-400 transition-colors">Çmimet</a>
+                <a href="#faq" class="hover:text-brand-400 transition-colors">Pyetje të Shpeshta</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="hidden md:flex items-center space-x-3">
+                <a href="#" data-email-link="default" class="px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold hover:bg-emerald-500/20 transition-all flex items-center space-x-2">
+                    <i class="fa-solid fa-envelope text-base text-emerald-400"></i>
+                    <span>Email</span>
+                </a>
+                <button onclick="openBookingModal('Regjistrim i Përgjithshëm', 'Seanca 1 FALAS')" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-slate-950 text-xs font-extrabold hover:brightness-110 transition-all shadow-md shadow-brand-500/20">
+                    Rezervo seancën  e parë falas
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button onclick="toggleMobileNav()" class="lg:hidden p-3 rounded-xl bg-slate-800 text-slate-200 hover:text-white border border-slate-700">
+                <i class="fa-solid fa-bars text-xl" id="navIcon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-6 space-y-4 text-slate-200 text-base font-semibold">
+            <a href="#kreu" onclick="toggleMobileNav()" class="block hover:text-brand-400 py-1">Kreu</a>
+            <a href="#kurset" onclick="toggleMobileNav()" class="block hover:text-brand-400 py-1">Programet e Kurseve</a>
+            <a href="#llogaritësi" onclick="toggleMobileNav()" class="block hover:text-brand-400 py-1">Çmimet</a>
+        
+            <a href="#faq" onclick="toggleMobileNav()" class="block hover:text-brand-400 py-1">Pyetje të Shpeshta</a>
+            
+            <div class="pt-4 border-t border-slate-800 flex flex-col gap-3">
+                <a href="#" data-email-link="default" class="w-full py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-center flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-envelope text-lg"></i>
+                    <span>Na shkruani me email</span>
+                </a>
+                <button onclick="openBookingModal('Regjistrim nga Mobile', 'Seanca 1 FALAS'); toggleMobileNav();" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-slate-950 font-black text-center shadow-lg">
+                    Rezervo seancën e parë falas
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="kreu" class="relative hero-gradient py-16 sm:py-24 lg:py-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Left Column -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-brand-950/80 border border-brand-500/40 rounded-full px-4 py-2 text-xs sm:text-sm font-bold text-brand-300">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span>Mësimdhënie online</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
+                        Përvetëso Kiminë <br class="hidden sm:inline">
+                        <span class="bg-gradient-to-r from-brand-400 via-accent-400 to-emerald-300 bg-clip-text text-transparent">pa stresi & me rezultate dhe me pikë maksimale</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Përgatitje e strukturuar me trajtim të librit të shkollës, simulime interaktive online, teste zyrtare të maturës ndër vite dhe përgatitje për Fondin e Mjekësisë & Universitet.
+                    </p>
+
+                    <!-- Accessibility Help Box for Non-tech users -->
+                    <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 text-left space-y-2 max-w-xl mx-auto lg:mx-0">
+                        <div class="text-xs font-bold text-brand-300 uppercase tracking-wider flex items-center">
+                            <i class="fa-solid fa-circle-info text-brand-400 mr-2 text-sm"></i> Mësimi realizohet online
+                        </div>
+                        <p class="text-xs text-slate-300">
+                            App-et që përdoren janë Zoom dhe Teams
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Hero Right Interactive Feature Showcase -->
+                <div class="lg:col-span-5">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-700/80 shadow-2xl relative">
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                                <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                            </div>
+                            <span class="text-xs font-mono text-brand-300 bg-brand-950 px-3 py-1 rounded-full border border-brand-800">Model mësimor për sezonin 2026-2027</span>
+                        </div>
+
+                        <!-- Mini Interactive Molecule Feature -->
+                        <div class="py-8 text-center space-y-4">
+                            <div class="relative w-32 h-32 mx-auto flex items-center justify-center">
+                                <div class="absolute inset-0 rounded-full border-2 border-dashed border-brand-400 animate-spin" style="animation-duration: 12s;"></div>
+                                <div class="absolute inset-3 rounded-full border-2 border-accent-400/50 rotate-45 animate-spin" style="animation-duration: 8s;"></div>
+                                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-500 to-accent-400 flex items-center justify-center text-slate-950 text-3xl shadow-lg">
+                                    🧪
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-xl font-bold text-white">Çfarë e bën këtë kurs unik?</h3>
+                            <p class="text-xs text-slate-300 leading-relaxed max-w-xs mx-auto">
+                                Çdo kapitull shpjegohet me shembuj të jetës reale, figura 3D dhe ushtrime të zgjidhura hap pas hapi.
+                            </p>
+                        </div>
+
+                        <!-- Highlights list -->
+                        <div class="space-y-3 pt-4 border-t border-slate-800 text-xs">
+                            <div class="flex items-center text-slate-200">
+                                <i class="fa-solid fa-check-circle text-emerald-400 mr-2.5 text-sm"></i>
+                                <span>Teori e thjeshtuar + Libri zyrtar i shkollës</span>
+                            </div>
+                            <div class="flex items-center text-slate-200">
+                                <i class="fa-solid fa-check-circle text-emerald-400 mr-2.5 text-sm"></i>
+                                <span>Kujdes individual për çdo nivel nxënësi</span>
+                            </div>
+                            <div class="flex items-center text-slate-200">
+                                <i class="fa-solid fa-check-circle text-emerald-400 mr-2.5 text-sm"></i>
+                                <span>Orar i fleksibël i përshtatur me shkollën/fakultetin. E hënë-e premte</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="kurset" class="py-20 sm:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span class="text-brand-400 font-extrabold text-xs uppercase tracking-widest bg-brand-950 border border-brand-800 px-4 py-1.5 rounded-full">
+                Programet e kursit të Kimisë
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-black text-white">Zgjidhni programin tuaj të mësimit</h2>
+            <p class="text-slate-400 text-sm sm:text-base">
+                Më poshtë gjeni 5 programet tona me të gjitha detajet e seancave, kohëzgjatjen e seancës dhe çmimet për secilin program.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Course Card 1 -->
+            <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border border-slate-800 hover:border-brand-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-500/10 group">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-extrabold uppercase text-brand-400 bg-brand-950 px-3 py-1 rounded-full border border-brand-800">
+                            Klasat 10-12
+                        </span>
+                        <span class="text-xs font-bold text-emerald-400 bg-emerald-950/80 px-2.5 py-1 rounded-full border border-emerald-800">
+                            🎁 SEANCA E PARË FALAS
+                        </span>
+                    </div>
+
+                    <h3 class="text-2xl font-black text-white mb-3 group-hover:text-brand-400 transition-colors">
+                        1. Kurs Individual (Kl. 10-12)
+                    </h3>
+                    
+                    <p class="text-slate-300 text-xs leading-relaxed mb-6">
+                        Përkushtim 100% individual i përshtatur plotësisht me ritmin dhe nevojat e nxënësit për të garantuar nota maksimale.
+                    </p>
+
+                    <div class="space-y-3 text-xs text-slate-200 mb-8">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-clock text-brand-400 mr-2.5 mt-0.5"></i>
+                            <span><strong>2 seanca në javë</strong> (60 minuta secila)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-book-open text-brand-400 mr-2.5 mt-0.5"></i>
+                            <span>Trajtim i librit aktual në gjimnaz</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-laptop-code text-brand-400 mr-2.5 mt-0.5"></i>
+                            <span>Simulime interaktive online të përshtatura me temat</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-file-lines text-brand-400 mr-2.5 mt-0.5"></i>
+                            <span>Ushtrime dhe teori shtesë sipas nevojave specifike</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
+                    <div>
+                        <span class="text-[10px] text-slate-400 uppercase font-bold block">Çmimi për çdo seancë</span>
+                        <span class="text-xl font-black text-white price-vjetra">700 lekë</span>
+        
+                        <span class="text-[11px] text-brand-400 font-semibold block">(60 minuta)</span>
+                    </div>
+                    <button onclick="openBookingModal('Kurs Individual (Klasa 10-12)', '7 mijë lekë (të vjetra) / 700 ALL')" class="px-4 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-400 text-slate-950 font-extrabold text-xs transition-all shadow-md">
+                        Rezervo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Course Card 2 -->
+            <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-500/10 group">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-extrabold uppercase text-emerald-400 bg-emerald-950 px-3 py-1 rounded-full border border-emerald-800">
+                            Klasat 8-12
+                        </span>
+                        <span class="text-xs font-bold text-emerald-400 bg-emerald-950/80 px-2.5 py-1 rounded-full border border-emerald-800">
+                            🎁 SEANCA E PARË FALAS
+                        </span>
+                    </div>
+
+                    <h3 class="text-2xl font-black text-white mb-3 group-hover:text-emerald-400 transition-colors">
+                        2. Kurs në Grup (nga klasat  8-12)
+                    </h3>
+                    
+                    <p class="text-slate-300 text-xs leading-relaxed mb-6">
+                        Punohet në grupe të vogla për të ruajtur cilësinë maksimale (max 5 persona online).
+                    </p>
+
+                    <div class="space-y-3 text-xs text-slate-200 mb-8">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-users text-emerald-400 mr-2.5 mt-0.5"></i>
+                            <span>Grupet 1-2 persona (<strong>40 min</strong>) | Grupet 3-5 persona (<strong>60 min</strong>)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-calendar-days text-emerald-400 mr-2.5 mt-0.5"></i>
+                            <span><strong>2 seanca në javë</strong></span>
+                        </div>
+                      
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-book text-emerald-400 mr-2.5 mt-0.5"></i>
+                            <span>Libri i gjimnazit + simulime online + Libër kimie 2011 për njohuri shtesë</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
+                    <div>
+                        <span class="text-[10px] text-slate-400 uppercase font-bold block">Çmimi mujor</span>
+                        <span class="text-xl font-black text-white price-vjetra">2500 lekë</span>
+                    
+                        <span class="text-[11px] text-emerald-400 font-semibold block">(në muaj)</span>
+                    </div>
+                    <button onclick="openBookingModal('Kurs në Grup (Klasa 10-12)', '25 mijë lekë (të vjetra) / 2,500 ALL')" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs transition-all shadow-md">
+                        Rezervo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Course Card 3 -->
+            <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border border-amber-500/30 hover:border-amber-500 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10 group">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-extrabold uppercase text-amber-400 bg-amber-950 px-3 py-1 rounded-full border border-amber-800">
+                            Fondi i pyetjeve të testimit të informatizuar të Mjeksisë
+                        </span>
+                        <span class="text-xs font-bold text-emerald-400 bg-emerald-950/80 px-2.5 py-1 rounded-full border border-emerald-800">
+                            🎁 SEANCA E PARË FALAS
+                        </span>
+                    </div>
+
+                    <h3 class="text-2xl font-black text-white mb-3 group-hover:text-amber-400 transition-colors">
+                        3. Fondi Mjekësi e Përgjithshme
+                    </h3>
+                    
+                    <p class="text-slate-300 text-xs leading-relaxed mb-6">
+                        Përgatitje intensive e specializuar për të gjithë kandidatët që synojnë Mjekësinë e Përgjithshme.
+                    </p>
+
+                    <div class="space-y-3 text-xs text-slate-200 mb-8">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-user-doctor text-amber-400 mr-2.5 mt-0.5"></i>
+                            <span>Grupi <strong>1-3 persona</strong> (2 seanca / javë)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-clock text-amber-400 mr-2.5 mt-0.5"></i>
+                            <span>Seanca zgjat <strong>60 minuta</strong></span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-database text-amber-400 mr-2.5 mt-0.5"></i>
+                            <span>Përfshihet i gjithë fondi i pyetjeve të Kimisë</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-desktop text-amber-400 mr-2.5 mt-0.5"></i>
+                            <span>Simulim i testimit të informatizuar sipas modelit të <strong>QSHA</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
+                    <div>
+                        <span class="text-[10px] text-slate-400 uppercase font-bold block">Çmimi për çdo seancë</span>
+                        <span class="text-xl font-black text-white price-vjetra">700 lekë</span>
+                        <span class="text-xl font-black text-white price-reja hidden">700 ALL</span>
+                        <span class="text-[11px] text-amber-400 font-semibold block">(60 minuta)</span>
+                    </div>
+                    <button onclick="openBookingModal('Fondi Pyetjeve Mjekësi', '7 mijë lekë (të vjetra) / 700 ALL')" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs transition-all shadow-md">
+                        Rezervo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Course Card 4 -->
+            <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border border-accent-500/30 hover:border-accent-400 transition-all duration-300 hover:shadow-2xl hover:shadow-accent-500/10 group">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-extrabold uppercase text-accent-400 bg-accent-950 px-3 py-1 rounded-full border border-accent-800">
+                            Fillon 1 Mars 2027
+                        </span>
+                        <span class="text-xs font-bold text-emerald-400 bg-emerald-950/80 px-2.5 py-1 rounded-full border border-emerald-800">
+                            🎁 SEANCA E PARË FALAS
+                        </span>
+                    </div>
+
+                    <h3 class="text-2xl font-black text-white mb-3 group-hover:text-accent-400 transition-colors">
+                        4. Matura Shtetërore (Kimi)
+                    </h3>
+                    
+                    <p class="text-slate-300 text-xs leading-relaxed mb-6">
+                        Përgatitje me zgjedhje për lëndën e Kimisë në Maturën Shtetërore me fokus në zgjidhjen e tezave zyrtare.
+                    </p>
+
+                    <div class="space-y-3 text-xs text-slate-200 mb-8">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-calendar-check text-accent-400 mr-2.5 mt-0.5"></i>
+                            <span>Fillon zyrtarisht më <strong>1 Mars 2027</strong> (2 seanca/javë)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-file-signature text-accent-400 mr-2.5 mt-0.5"></i>
+                            <span>Trajtohen të gjitha testet e maturës ndër vite (<strong>2006-2026</strong>)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-users text-accent-400 mr-2.5 mt-0.5"></i>
+                            <span>Grupi 1-2 persona (40 min) | Grupi 3-5 persona (60 min)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
+                    <div>
+                        <span class="text-[10px] text-slate-400 uppercase font-bold block">Çmimi mujor</span>
+                        <span class="text-xl font-black text-white price-vjetra">2500 lekë</span>
+                    
+                        <span class="text-[11px] text-accent-400 font-semibold block">(në muaj)</span>
+                    </div>
+                    <button onclick="openBookingModal('Matura Shtetërore Kimi', '2500 lekë/muaj')" class="px-4 py-2.5 rounded-xl bg-accent-500 hover:bg-accent-400 text-slate-950 font-extrabold text-xs transition-all shadow-md">
+                        Rezervo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Course Card 5 -->
+            <article class="glass-card rounded-3xl p-8 border border-brand-500/40 hover:border-brand-400 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-500/10 group md:col-span-2 lg:col-span-2">
+                <div>
+                    <div class="flex flex-wrap items-center gap-3 mb-4">
+                        <span class="text-xs font-extrabold uppercase text-brand-300 bg-brand-950 px-3 py-1 rounded-full border border-brand-800">
+                            Kurs kimie për universitetet
+                        </span>
+                        <span class="text-xs font-bold text-emerald-400 bg-emerald-950/80 px-2.5 py-1 rounded-full border border-emerald-800">
+                            🎁 SEANCA E PARË FALAS
+                        </span>
+                    </div>
+
+                    <h3 class="text-2xl sm:text-3xl font-black text-white mb-3 group-hover:text-brand-300 transition-colors">
+                        5. Kimi Universitare (Përgjithshme dhe Inorganike + Organike + Analitike)
+                    </h3>
+                    
+                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
+                        Për studentët e Universitetit të Mjekësisë (UMT), Universitetit të Tiranës (UT), Universitetit Politeknik (UPT), Universitetit Bujqësor (UBT) si dhe universiteteve private.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-200">
+                        <div class="flex items-start p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+                            <i class="fa-solid fa-bolt text-brand-400 mr-2.5 mt-0.5 text-base"></i>
+                            <span><strong>2/3 seanca në javë</strong> (në varësi të nevojave të studentit)</span>
+                        </div>
+                        <div class="flex items-start p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+                            <i class="fa-solid fa-user-group text-brand-400 mr-2.5 mt-0.5 text-base"></i>
+                            <span>Grupi <strong>1-3 persona</strong> (60 minuta secila seancë)</span>
+                        </div>
+                        <div class="flex items-start sm:col-span-2 p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+                            <i class="fa-solid fa-graduation-cap text-brand-400 mr-2.5 mt-0.5 text-base"></i>
+                            <span>Trajtohet Kimi e Përgjithshme & Inorganike, Kimi Organike dhe Kimi Analitike + Ushtrime provimi.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-5 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <span class="text-[10px] text-slate-400 uppercase font-bold block">Çmimi për seancë</span>
+                        <span class="text-2xl font-black text-white price-vjetra">1000 lekë</span>
+                        <span class="text-xs text-brand-400 font-semibold block">(60 minuta)</span>
+                    </div>
+                    <button type="button" onclick="openBookingModal('Kimi Universitare', '10 mijë lekë (të vjetra) / 1,000 ALL')" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-400 text-slate-950 font-extrabold text-xs transition-all shadow-md">
+                        Rezervo
+                    </button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <section id="llogaritësi" class="py-20 bg-slate-900/80 border-y border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-brand-400 font-extrabold text-xs uppercase tracking-widest bg-brand-950 border border-brand-800 px-4 py-1.5 rounded-full">
+                    Çmimet e programeve
+                </span>
+                <h2 class="text-3xl font-black text-white mt-3">Llogaritësi i Çmimit të Kursit</h2>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2">
+                    Zgjidhni kursin tuaj për të parë përmbledhjen e saktë të çmimit dhe orarit.
+                </p>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-slate-700 shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+                                1. Zgjidhni Programin e Kursit:
+                            </label>
+                            <select id="calcProgramSelect" onchange="updateCalculator()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-brand-500 font-medium">
+                                <option value="1">1. Kurs Individual (Klasa 10-12)</option>
+                                <option value="2">2. Kurs në Grup (Klasa 8-12)</option>
+                                <option value="3">3. Fondi Pyetjeve Mjekësi e Përgjithshme</option>
+                                <option value="4">4. Matura Shtetërore (Kimi)</option>
+                                <option value="5">5. Kimi Universitare (UMT, UT, UPT, UBT, Privat)</option>
+                            </select>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2">
+                            <span class="text-xs font-bold text-brand-400 uppercase tracking-wider block">Përmbledhja e Programit të Zgjedhur:</span>
+                            <p id="calcDetailsText" class="text-xs text-slate-300 leading-relaxed">
+                                2 seanca në javë (60 min). Trajtim i librit aktual + simulime interaktive online + ushtrime & teori shtesë.
+                            </p>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-emerald-950/60 border border-emerald-800/80 flex items-center space-x-3 text-emerald-300 text-xs font-bold">
+                            <span class="text-lg">🎁</span>
+                            <span>Seanca e 1-rë është 100% FALAS pa asnjë detyrim financiar!</span>
+                        </div>
+                    </div>
+
+                    <!-- Calculator Output Card -->
+                    <div class="lg:col-span-5 bg-gradient-to-b from-slate-900 to-slate-950 p-6 sm:p-8 rounded-2xl border border-slate-800 text-center flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Kosto e Zgjedhur</span>
+                            
+                            <div class="my-4">
+                                <div id="calcDisplayVjetra" class="text-3xl sm:text-4xl font-black text-brand-400">700 lekë</div>
+                                
+                                <div id="calcDisplayUnit" class="text-xs text-slate-400 mt-1 font-medium">për seancë (60 min)</div>
+                            </div>
+                        </div>
+
+                        <button onclick="openModalFromCalculator()" class="mt-6 w-full py-4 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-slate-950 font-black text-xs shadow-lg shadow-brand-500/20 hover:scale-[1.02] transition-transform">
+                            Rezervo këtë kurs tani
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 bg-slate-900/60 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-12">
+                <span class="text-brand-400 font-extrabold text-xs uppercase tracking-widest bg-brand-950 border border-brand-800 px-4 py-1.5 rounded-full">
+                    Sqarime
+                </span>
+                <h2 class="text-3xl font-black text-white mt-3">Pyetjet e Shpeshta</h2>
+            </div>
+
+            <div class="space-y-4">
+                
+                <details class="group glass-card p-6 rounded-2xl border border-slate-800 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-white text-sm sm:text-base">
+                        <span>A është vërtet seanca e parë falas?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-4 leading-relaxed border-t border-slate-800/80 pt-3">
+                        Po, plotësisht! Seanca e parë zhvillohet 100% FALAS pa asnjë detyrim. Ju provoni metodën tonë të mësimdhënies dhe më pas vendosni nëse dëshironi të vazhdoni.
+                    </p>
+                </details>
+
+                <details class="group glass-card p-6 rounded-2xl border border-slate-800 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-white text-sm sm:text-base">
+                        <span>A mund të hapet paketa e kursit në grup vetëm me 1 person ?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-4 leading-relaxed border-t border-slate-800/80 pt-3">
+                    Po, paketa e kursit në grup mund të realizohet edhe me 1 pjesmarrës me të njëjtin çmim në paketë 2500 lekë/muaj. Kohëzgjatja është 40 min
+                    </p>
+                </details>
+
+                <details class="group glass-card p-6 rounded-2xl border border-slate-800 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-white text-sm sm:text-base">
+                        <span>Realizoni kurse individuale për klasën e 8-9?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-4 leading-relaxed border-t border-slate-800/80 pt-3">
+                      Në varësi të orarëve të lira që mund të kemi realizohet. Çmimi i paketës do jetë 700 lekë/ seanca (60min)
+                </details>
+
+                <details class="group glass-card p-6 rounded-2xl border border-slate-800 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-white text-sm sm:text-base">
+                        <span>A realizoni kurse kimie me pjesmarrje fizike në klasë?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-4 leading-relaxed border-t border-slate-800/80 pt-3">
+                        Jo, për momentin nuk realizojmë. Seancat e kursit janë vetëm online
+                    </p>
+                </details>
+                 <details class="group glass-card p-6 rounded-2xl border border-slate-800 cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-white text-sm sm:text-base">
+                        <span>Shënimet që i jepni në kurs i realizoni fizikisht në tabelë dhe ne i shohim nëpërmjet kamerës?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-4 leading-relaxed border-t border-slate-800/80 pt-3">
+                        Jo, shënimet paraqiten me shkrim nëpërmjet app-ev si Samsung Note, whiteboard ose windows note. Tableti grafik i lidhuar me laptopin e krzen të gjithë këtë proces.
+                    </p>
+                </details>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Floating Bottom Bar for Mobile Users -->
+    <div class="fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 border-t border-slate-800 p-3 sm:hidden backdrop-blur-md flex items-center justify-between gap-2">
+        <a href="#" data-email-link="default" class="flex-1 py-3 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-bold text-xs flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-envelope text-sm"></i>
+            <span>Email</span>
+        </a>
+        <button onclick="openBookingModal('Regjistrim nga Mobile', 'Seanca 1 FALAS')" class="flex-1 py-3 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-slate-950 font-black text-xs text-center shadow-lg">
+            🎁 Seanca 1 FALAS
+        </button>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="fixed inset-0 z-50 flex items-start sm:items-center justify-center overflow-y-auto bg-black/80 backdrop-blur-md hidden p-3 sm:p-4">
+        <div class="responsive-dialog-panel glass-card bg-slate-900 rounded-2xl sm:rounded-3xl max-w-lg w-full p-5 sm:p-8 border border-slate-700 shadow-2xl relative">
+            
+            <button onclick="closeBookingModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center border border-slate-700">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="mb-6">
+                <span class="text-[10px] font-extrabold text-emerald-400 uppercase tracking-widest bg-emerald-950 px-3 py-1 rounded-full border border-emerald-800">
+                    🎁 Seanca e Parë 100% FALAS
+                </span>
+                <h3 class="text-xl sm:text-2xl font-black text-white mt-2 pr-8">Formulari i Rezervimit</h3>
+                <p class="text-xs text-slate-400 mt-1">Plotësoni të dhënat minimale për të caktuar orarin e seancës falas.</p>
+            </div>
+
+            <form id="bookingForm" onsubmit="submitRegistration(event)" class="space-y-4">
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-300 uppercase mb-1">Emri dhe Mbiemri *</label>
+                    <input id="fullName" type="text" autocomplete="name" required class="w-full min-h-11 bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-500" placeholder="P.sh. Erion Hoxha">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-300 uppercase mb-1">Numri i Telefonit *</label>
+                        <input id="phoneNumber" type="tel" autocomplete="tel" required class="w-full min-h-11 bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-500" placeholder="069 XX XX XXX">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-300 uppercase mb-1">Klasa ose Universiteti</label>
+                        <input id="schoolLevel" type="text" class="w-full min-h-11 bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-500" placeholder="Klasa 11 / Mjekësi">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-300 uppercase mb-1">Programi i Zgjedhur</label>
+                    <input type="text" id="modalCourseTitle" readonly class="w-full min-h-11 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-xs text-brand-300 font-bold cursor-not-allowed">
+                </div>
+
+                <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-slate-950 font-black text-xs shadow-lg shadow-brand-500/20 hover:brightness-110 transition-all">
+                    Konfirmo Rezervimin Falas
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Confirmation Dialog -->
+    <div id="successDialog" class="fixed inset-0 z-50 flex items-start sm:items-center justify-center overflow-y-auto bg-black/80 backdrop-blur-md hidden p-3 sm:p-4">
+        <div class="responsive-dialog-panel glass-card bg-slate-900 rounded-2xl sm:rounded-3xl max-w-md w-full p-6 sm:p-8 text-center border border-slate-700 shadow-2xl">
+            <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-4 border border-emerald-500/40">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-2xl font-black text-white mb-2">Rezervimi u Krye!</h3>
+            <p class="text-xs text-slate-300 mb-6 leading-relaxed">
+                Faleminderit! Rezervimi juaj u regjistrua me sukses. Do t'ju kontaktojmë së shpejti për orarin e seancës suaj të parë FALAS.
+            </p>
+            <button onclick="closeSuccessDialog()" class="w-full py-3.5 rounded-xl bg-brand-500 text-slate-950 font-black text-xs">
+                Në Rregull
+            </button>
+        </div>
+    </div>
+
+    <footer class="bg-slate-950 border-t border-slate-800 py-12 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <span class="text-2xl">🧪</span>
+                <span class="text-base font-bold text-white">Kurse Kimie</span>
+            </div>
+            <p class="text-slate-400 font-medium">&copy; 2026 Kurse Kimie. Të gjitha të drejtat e rezervuara.</p>
+            <div class="mt-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-xs text-slate-300">
+                <a href="#" data-email-link="default" class="inline-flex items-center gap-2 hover:text-brand-400 transition-colors">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>kurse.kimie100@gmail.com</span>
+                </a>
+                <a href="https://www.instagram.com/kimi_kurs/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:text-pink-400 transition-colors">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>@kimi_kurs</span>
+                </a>
+            </div>
+           
+        </div>
+    </footer>
+
+    <!-- Interactive JS Application Controller -->
+    <script>
+        const contactInfo = {
+            email: 'kurse.kimie100@gmail.com'
+        };
+
+        // Course Program Data Definition
+        const programsData = {
+            "1": {
+                name: "1. Kurs Individual (Klasa 10-12)",
+                vjetra: "700 lekë",
+                reja: "700 ALL (të reja)",
+                unit: "për seancë (60 min)",
+                details: "2 seanca në javë (60 min). Trajtim i librit aktual të gjimnazit + simulime interaktive online të përshtatura me temat + ushtrime & teori shtesë."
+            },
+            "2": {
+                name: "2. Kurs në Grup (Klasa 10-12)",
+                vjetra: "2500 lekë",
+                reja: "2,500 ALL (të reja)",
+                unit: "në muaj (2 seanca/javë)",
+                details: "2 seanca në javë. Grupet 1-2 pers (40 min) / 3-5 pers (60 min). Max 5 persona online. Libri aktual + simulime + Libri 2011 për njohuri shtesë."
+            },
+            "3": {
+                name: "3. Fondi Pyetjeve Mjekësi e Përgjithshme",
+                vjetra: "700 lekë",
+                reja: "700 ALL (të reja)",
+                unit: "për seancë (60 min)",
+                details: "2 seanca në javë (60 min). Grupi 1-3 persona. I gjithë fondi i pyetjeve + Simulim i testimit të informatizuar QSHA me testim pas çdo kapitulli."
+            },
+            "4": {
+                name: "4. Matura Shtetërore (Kimi)",
+                vjetra: "2500 lekë",
+                reja: "2,500 ALL (të reja)",
+                unit: "në muaj (2 seanca/javë)",
+                details: "Fillon më 1 Mars 2027 (2 seanca/javë). Trajtohen testet e maturës 2006-2026. Grupet 1-2 pers (40 min) / 3-5 pers (60 min)."
+            },
+            "5": {
+                name: "5. Kimi Universitare (Përgjithshme / Organike / Analitike)",
+                vjetra: "1000 lekë",
+                reja: "1,000 ALL (të reja)",
+                unit: "për seancë (60 min)",
+                details: "3 seanca në javë (semestri i shkurtër). Grupi 1-3 persona (60 min). Për studentët e UMT, UT, UPT, UBT dhe universiteteve private."
+            }
+        };
+
+        // Currency Toggle Logic
+        function setCurrencyMode(mode) {
+            const btnVjetra = document.getElementById('btnVjetra');
+            const btnReja = document.getElementById('btnReja');
+            const elementsVjetra = document.querySelectorAll('.price-vjetra');
+            const elementsReja = document.querySelectorAll('.price-reja');
+
+            if (mode === 'vjetra') {
+                btnVjetra.className = "px-3 py-1 rounded-lg text-xs font-bold transition-all bg-brand-500 text-slate-950 shadow-md";
+                btnReja.className = "px-3 py-1 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white";
+                elementsVjetra.forEach(el => el.classList.remove('hidden'));
+                elementsReja.forEach(el => el.classList.add('hidden'));
+            } else {
+                btnReja.className = "px-3 py-1 rounded-lg text-xs font-bold transition-all bg-emerald-500 text-slate-950 shadow-md";
+                btnVjetra.className = "px-3 py-1 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white";
+                elementsReja.forEach(el => el.classList.remove('hidden'));
+                elementsVjetra.forEach(el => el.classList.add('hidden'));
+            }
+        }
+
+        // Calculator Dynamic Updates
+        function updateCalculator() {
+            const selectVal = document.getElementById('calcProgramSelect').value;
+            const program = programsData[selectVal];
+
+            document.getElementById('calcDetailsText').innerText = program.details;
+            document.getElementById('calcDisplayVjetra').innerText = program.vjetra;
+            document.getElementById('calcDisplayUnit').innerText = program.unit;
+        }
+
+        // Modal Management
+        function openBookingModal(courseName, priceInfo) {
+            document.getElementById('modalCourseTitle').value = courseName + " (" + priceInfo + ")";
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        function openModalFromCalculator() {
+            const selectVal = document.getElementById('calcProgramSelect').value;
+            const program = programsData[selectVal];
+            openBookingModal(program.name, program.vjetra + " / " + program.reja);
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        async function submitRegistration(e) {
+            e.preventDefault();
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const phoneNumber = document.getElementById('phoneNumber').value.trim();
+            const schoolLevel = document.getElementById('schoolLevel').value.trim();
+            const courseName = document.getElementById('modalCourseTitle').value || 'Program i zgjedhur';
+
+            if (!fullName || !phoneNumber) {
+                return;
+            }
+
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Dërgohet...';
+
+            const payload = {
+                _subject: 'Rezervim i ri - Seanca e parë falas',
+                _captcha: 'false',
+                _template: 'table',
+                name: fullName,
+                phone: phoneNumber,
+                school_level: schoolLevel || 'Nuk u dhënë',
+                course: courseName,
+                message: `Rezervim për seancën e parë falas.\nEmri: ${fullName}\nTelefoni: ${phoneNumber}\nKlasa/Universiteti: ${schoolLevel || 'Nuk u dhënë'}\nProgrami: ${courseName}`
+            };
+
+            try {
+                const response = await fetch('https://formsubmit.co/ajax/kurse.kimie100@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Registration request failed.');
+                }
+
+                closeBookingModal();
+                document.getElementById('successDialog').classList.remove('hidden');
+            } catch (error) {
+                const emailSubject = encodeURIComponent('Rezervim i ri - Seanca e parë falas');
+                const emailBody = encodeURIComponent(
+                    `Emri: ${fullName}\nTelefoni: ${phoneNumber}\nKlasa/Universiteti: ${schoolLevel || 'Nuk u dhënë'}\nProgrami: ${courseName}`
+                );
+
+                const emailUrl = `mailto:${contactInfo.email}?subject=${emailSubject}&body=${emailBody}`;
+
+                window.location.href = emailUrl;
+
+                closeBookingModal();
+                document.getElementById('successDialog').classList.remove('hidden');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
+        }
+
+        function closeSuccessDialog() {
+            document.getElementById('successDialog').classList.add('hidden');
+        }
+
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobileMenu');
+            nav.classList.toggle('hidden');
+        }
+
+        // Interactive Sample Quiz Check
+        function handleQuizAnswer(button, isCorrect) {
+            const resultBox = document.getElementById('quizResult');
+            resultBox.classList.remove('hidden', 'bg-emerald-950', 'text-emerald-300', 'bg-red-950', 'text-red-300');
+
+            if (isCorrect) {
+                resultBox.classList.add('bg-emerald-950', 'text-emerald-300', 'border', 'border-emerald-800');
+                resultBox.innerHTML = "<strong>✅ Plotësisht e Saktë!</strong> KMnO₄ ka numër oksidimi +7 sepse K është +1, O₄ është -8, pra Mn = +7.";
+            } else {
+                resultBox.classList.add('bg-red-950', 'text-red-300', 'border', 'border-red-800');
+                resultBox.innerHTML = "<strong>❌ Nuk është e saktë.</strong> Përgjigja e saktë është B) +7 [K=+1, 4O=-8 ➔ Mn = +7]. Ndiqni kurset tona për t'i zgjidhur këto ushtrime në pak sekonda!";
+            }
+        }
+
+        function applyContactInfo() {
+            const emailBase = `mailto:${contactInfo.email}`;
+
+            document.querySelectorAll('[data-email-link]').forEach(link => {
+                link.href = emailBase;
+            });
+        }
+
+        // Initialize default calculator state on page load
+        window.onload = function() {
+            applyContactInfo();
+            updateCalculator();
+        };
+    </script>
+</body>
+</html>
